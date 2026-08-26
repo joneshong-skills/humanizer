@@ -1,6 +1,6 @@
-# The 35 AI writing patterns
+# The 39 AI writing patterns
 
-The catalogue from Wikipedia's ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), verbatim as it ships upstream. `SKILL.md` carries the process and the false-positive rules; this file carries what each pattern actually looks like and how to fix it.
+Patterns 1-35 are the catalogue from Wikipedia's ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), verbatim as it ships upstream. Patterns 36-39 come from the [`unslop` skill](https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md) in Cursor's pstack plugin. `SKILL.md` carries the process and the false-positive rules; this file carries what each pattern actually looks like and how to fix it.
 
 Section numbers are stable — `SKILL.md` cites them as §7, §14 and so on.
 
@@ -348,3 +348,46 @@ Remove only the unsupported defense. If it contains a real claim, state that cla
 > Session tokens are rotated every 24 hours, in place, and clients refresh transparently.
 
 One rejected option may be valid. Several short, unrelated rejections are a stronger sign. Ask what new information each sentence adds. If it only records an earlier edit, rewrite the paragraph around its main point.
+
+## Jargon and plain speech
+
+### 36. Abstract metaphor nouns
+
+**Words to watch:** substrate, wedge, vector, locus, vantage, nexus, primitive (as a noun), harness (as a metaphor), surface (as in "API surface"), bedrock, scaffolding (as a metaphor), modality, paradigm, gold-plating, ratchet (as a metaphor), evacuate (for moving code), endgame, north star, flywheel
+**Problem:** These words read as technical but usually stand in for a plainer concrete word. Pick the concrete word.
+**Before:**
+> The cache is the substrate for the whole request path. We wedge a new retry vector into the API surface, then evacuate the old handler once the endgame lands.
+**After:**
+> The cache sits under the whole request path. We add a second retry method to the public API, then move the old handler out in the last phase.
+
+Common swaps: *substrate* becomes "base", *wedge in* becomes "add", *vector* becomes "way" or "method", *gold-plating* becomes "more than the job needs", *ratchet* becomes the mechanism's real name or "a limit that only tightens", *evacuate* becomes "move out", *endgame* becomes "the last phase". Keep a word that carries its literal technical meaning, such as a vector in mathematics or a test harness that really exists.
+
+### 37. Say what it does, not how it feels
+
+**Signs to watch:** A sentence that names a feeling about the software instead of its behavior, such as "the database stays close at hand", "SQL you can read", "types that follow your schema".
+**Problem:** AI writing describes the experience of using a thing rather than what the thing does. The fix names the mechanism or a number.
+**Before:**
+> The database stays close at hand, with SQL you can read and types that follow your schema.
+**After:**
+> `.toSQL()` returns the exact string sent to the database, and a column rename fails the build.
+
+Ask what the sentence tells the reader to do or know, then write that. If you cannot restate it as a concrete instruction, fact, or number, cut it. One more check: if the sentence could appear unchanged in another project's documentation, it says nothing about this one. Cut it.
+
+### 38. Cut adverbs, or use a stronger verb
+**Problem:** AI writing props up a weak verb with an -ly adverb instead of choosing the exact verb or giving the measurement. "runs quickly" becomes "is fast" or the number. "significantly improves" becomes the measured delta.
+**Before:**
+> The new index runs quickly and significantly improves query time.
+**After:**
+> The new index cut median query time from 240 ms to 18 ms.
+
+An adverb holding up a verb means the verb is wrong. Keep an adverb that changes the meaning, as in "the job runs nightly."
+
+### 39. Prefer the plain word
+
+**Before → After:**
+- "utilize the existing parser" → "use the existing parser"
+- "leverage the cache" → "use the cache"
+- "facilitate the migration" → "help with the migration"
+- "numerous edge cases" → "many edge cases"
+
+The fancier synonym is rarely clearer. This covers single words; §23 covers the longer stock phrases, including "in the event that" → "if". Do not flatten every formal word: swap the ones on this list, and leave a term that the writer's field actually uses.

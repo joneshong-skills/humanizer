@@ -42,7 +42,7 @@ Use personality in blog posts, essays, opinions, and personal writing when it fi
 
 When personality fits, keep the writer's opinions, uncertainty, mixed feelings, humor, asides, and uneven rhythm. Never invent facts to make the text feel personal.
 
-## The 35 patterns
+## The 39 patterns
 
 The catalogue lives in [`references/PATTERNS.md`](references/PATTERNS.md) — each
 pattern with the wording that gives it away and the fix. **Open it before
@@ -95,6 +95,12 @@ that distinction is the whole job. Cited by number throughout this file (§7,
 §33 Fake-candid openings
 §34 Answering objections no one raised
 §35 Rejecting fake alternatives
+
+**Jargon and plain speech**
+§36 Abstract metaphor nouns
+§37 Say what it does, not how it feels
+§38 Cut adverbs, or use a stronger verb
+§39 Prefer the plain word
 
 ## Check for false positives
 
